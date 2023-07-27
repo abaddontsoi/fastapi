@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test</title>
+    </head>
+    <body>
+        <form action="http://localhost:8000/items/" method="get">
+            <input type="text" name="q" id="q" placeholder="query">
+            <input type="submit" value="submit">
+        </form>
+    </body>
+    <script>
+        function formS() {            
+            var sending = {}
+            sending.name = document.getElementById('form')
+            console.log(sending)
+        }
+    </script>
+</html>
