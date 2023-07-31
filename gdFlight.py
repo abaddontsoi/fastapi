@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query, Path
+from fastapi import FastAPI, Query, Path, Body
 from pydantic import BaseModel
 from typing import Annotated
 from pymongo.mongo_client import MongoClient
@@ -45,9 +45,12 @@ fCol = client['Flight']['f01']
 
 class Account(BaseModel):
     id: str
+    pwd: str
     name: str
     age: int
     contactNum: str
+
+acCol = client["Account"]['ac01']
 
 # create booking
 @app.post('/booking')
@@ -117,9 +120,12 @@ async def deleteBk(
 # create accounts
 @app.post('/account')
 async def createAc(
-
+    info: Annotated[ Account, Body()]
 ):
-    ...
+    try:
+        target = acCol.insert_one(info.dict())
+    except Exception as e:
+        return e
 # read accounts
 # update accounts
 # delete accounts
